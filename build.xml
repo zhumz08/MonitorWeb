@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="springmvc">
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
+
+	<!--编译路径 -->
+	<property name="build_path" value="build" />
+	<!--编译配置文件 -->
+	<property file="src/resource/build.properties" />
+	<!-- 工程名 -->
+	<property name="project.name" value="${ant.project.name}-${version}" />
+	<!-- 架包名 -->
+	<property name="jar-jarname" value="${ant.project.name}-${version}.jar" />
+	<!-- 全称架包 -->
+	<property name="jar-jarname-foryarn" value="${ant.project.name}-${version}_full.jar" />
+	<!-- war 包名称 -->
+	<property name="war.name" value="${ant.project.name}.war" />
+
+	<!-- 依赖架包 -->
+	<path id="Web App Libraries.libraryclasspath">
+		<pathelement location="WebRoot/WEB-INF/lib/activation-1.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/aopalliance-1.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/apacheds-i18n-2.0.0-M15.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/apacheds-kerberos-codec-2.0.0-M15.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/api-asn1-api-1.0.0-M20.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/api-util-1.0.0-M20.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/asm-3.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/aspectjweaver-1.6.9.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/avro.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/c3p0-0.9.1.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/cglib-nodep-2.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-beanutils-1.7.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-beanutils-core-1.8.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-cli-1.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-codec-1.9.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-collections-3.2.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-collections-3.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-compress-1.4.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-configuration-1.6.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-daemon-1.0.3.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-dbcp-1.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-digester-1.8.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-el-1.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-fileupload-1.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-io-2.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-lang-2.5.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-lang-2.6.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-logging-1.1.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-logging-1.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-math-2.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-math3-3.1.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-net-3.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/commons-pool-1.5.3.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/core-3.1.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/curator-client-2.7.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/curator-framework-2.7.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/curator-recipes-2.7.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/disruptor-3.3.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/dom4j-1.6.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/findbugs-annotations-1.3.9-1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/gson-2.2.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/guava-12.0.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-auth-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-aws-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-common-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-hdfs-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-mapreduce-client-common-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-mapreduce-client-core-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-mapreduce-client-jobclient-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-mapreduce-client-shuffle-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-nfs-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-yarn-api-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-yarn-client-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-yarn-common-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-yarn-registry-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-yarn-server-common-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hadoop-yarn-server-tests-2.6.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hamcrest-core-1.3.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-annotations-1.0.0-cdh5.4.4-tests.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-annotations-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-checkstyle-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-client-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-common-1.0.0-cdh5.4.4-tests.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-common-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-examples-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-hadoop-compat-1.0.0-cdh5.4.4-tests.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-hadoop-compat-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-hadoop2-compat-1.0.0-cdh5.4.4-tests.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-hadoop2-compat-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-it-1.0.0-cdh5.4.4-tests.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-it-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-prefix-tree-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-protocol-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-rest-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-server-1.0.0-cdh5.4.4-tests.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-server-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-shell-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-testing-util-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hbase-thrift-1.0.0-cdh5.4.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/high-scale-lib-1.1.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/hsqldb-1.8.0.10.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/htrace-core-3.0.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/htrace-core-3.1.0-incubating.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/htrace-core.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/httpclient-4.3.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/httpcore-4.3.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jackson-core-asl-1.8.8.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jackson-jaxrs-1.8.8.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jackson-mapper-asl-1.8.8.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jackson-xc-1.8.8.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jamon-runtime-2.3.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/java-xmlbuilder-0.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/javax.servlet.jsp.jstl.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jaxb-api-2.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jaxb-impl-2.2.3-1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jcodings-1.0.8.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jersey-client-1.9.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jersey-core-1.9.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jersey-json-1.9.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jersey-server-1.9.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jets3t-0.9.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jettison-1.3.3.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jetty-6.1.26.cloudera.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jetty-sslengine-6.1.26.cloudera.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jetty-util-6.1.26.cloudera.4.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/joni-2.1.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jruby-cloudera-1.0.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jsch-0.1.42.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jsr305-1.3.9.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/jstl-impl-1.2.2.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/junit-4.11.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/leveldbjni-all-1.8.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/libthrift-0.9.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/log4j-1.2.16.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/log4j-1.2.17.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/metrics-core-2.2.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/netty-3.6.6.Final.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/ojdbc611203.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.aop-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.asm-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.aspects-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.beans-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.context-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.context.support-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.core-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.expression-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.instrument-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.instrument.tomcat-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.jdbc-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.jms-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.orm-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.oxm-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.transaction-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.web-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.web.portlet-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.web.servlet-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/org.springframework.web.struts-3.1.1.RELEASE.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/paranamer-2.3.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/protobuf-java-2.5.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/servlet-api.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/slf4j-api-1.7.5.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/slf4j-log4j12.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/snappy-java-1.0.4.1.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/webservices-api.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/webservices-extra-api.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/webservices-extra.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/webservices-rt.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/xmlenc-0.52.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/xz-1.0.jar" />
+		<pathelement location="WebRoot/WEB-INF/lib/zookeeper.jar" />
+	</path>
+
+	<path id="facecloud-1.0.classpath">
+		<pathelement location="WebRoot/WEB-INF/classes" />
+		<path refid="Web App Libraries.libraryclasspath" />
+	</path>
+
+	<!-- 初始化 -->
+	<target name="init">
+		<echo>Init build jar............</echo>
+		<mkdir dir="WebRoot/WEB-INF/classes" />
+		<copy includeemptydirs="false" todir="WebRoot/WEB-INF/classes">
+			<fileset dir="src">
+				<exclude name="**/*.java" />
+				<exclude name="resource/" />
+			</fileset>
+		</copy>
+		<copy includeemptydirs="false" todir="WebRoot/WEB-INF/classes">
+			<fileset dir="src/resource">
+				<exclude name="**/*.java" />
+				<exclude name="log4j.properties" />
+				<exclude name="conf/" />
+			</fileset>
+		</copy>
+		<copy includeemptydirs="false" todir="WebRoot/WEB-INF/classes">
+			<fileset dir="test">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy includeemptydirs="false" todir="WebRoot/WEB-INF/classes">
+			<fileset dir=".apt_generated">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<echo>=== Create build directory ===</echo>
+		<mkdir dir="${build_path}/${project.name}/lib" />
+		<mkdir dir="${build_path}/${project.name}/conf" />
+		<mkdir dir="${build_path}/${project.name}/log" />
+		<mkdir dir="${build_path}/${project.name}/bin" />
+		<copy todir="${build_path}/${project.name}/bin">
+			<fileset dir="bin" />
+		</copy>
+		<copy todir="${build_path}/${project.name}/conf">
+			<fileset dir="src/resource/conf" />
+		</copy>
+		<copy todir="${build_path}/${project.name}/">
+			<fileset dir="WebRoot">
+				<include name="version.txt" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- 删除原来的目录 -->
+	<target name="clean">
+		<delete dir="WebRoot/WEB-INF/classes" />
+
+		<delete dir="${build_path}/${project.name}" />
+	</target>
+
+	<!-- 清空 -->
+	<target depends="clean" name="cleanall" />
+
+	<!-- 总编译工程 -->
+	<target depends="build-subprojects,build-project,build-jar" name="build" >
+	</target>
+
+	<target name="build-subprojects" />
+
+	<!-- 编译Java代码 生成类文件  -->
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="WebRoot/WEB-INF/classes" includeantruntime="false" source="${source}" target="${target}" encoding="UTF-8">
+			<src path="src" />
+			<src path="src/resource" />
+			<src path="test" />
+			<src path=".apt_generated" />
+			<exclude name="resource/" />
+			<exclude name="log4j.properties" />
+			<exclude name="conf/" />
+			<classpath refid="facecloud-1.0.classpath" />
+		</javac>
+	</target>
+
+	<target name="build-jar" depends="init">
+		<tstamp>
+			<format property="touch.time" pattern="yyyy-MM-dd HH:mm:ss" />
+		</tstamp>
+
+		<echo>=== Create Jar ===${touch.time}</echo>
+		<delete file="${build_path}/${project.name}/lib/${jar-jarname}}" />
+		<jar jarfile="${build_path}/${project.name}/lib/${jar-jarname}">
+			<fileset dir="WebRoot/WEB-INF/classes">
+				<exclude name="ant/*" />
+				<exclude name="spring-jdbc.xml" />
+				<exclude name="log4j.properties" />
+				<exclude name="spring-context.xml" />
+			</fileset>
+			<manifest>
+				<attribute name="Implementation-Vendor" value="Broadvident" />
+				<attribute name="Implementation-Title" value="${project.name}" />
+				<attribute name="Implementation-Version" value="${version}" />
+				<attribute name="Implementation-Time" value="${touch.time}" />
+			</manifest>
+		</jar>
+
+		<!-- Yarn jar -->
+		<echo>=== Create Yarn Jar ===${touch.time}</echo>
+		<jar jarfile="${build_path}/${project.name}/${jar-jarname-foryarn}">
+			<fileset dir="WebRoot/WEB-INF/classes">
+				<exclude name="ant/*" />
+				<exclude name="spring-jdbc.xml" />
+				<exclude name="log4j.properties" />
+				<exclude name="spring-context.xml" />
+			</fileset>
+			<fileset dir="${build_path}/classes/mysql-connector-java-5.0.8-bin">
+				<exclude name="ant/*" />
+			</fileset>
+			<fileset dir="${build_path}/classes/ojdbc611203">
+				<exclude name="ant/*" />
+			</fileset>
+			<manifest>
+				<attribute name="Implementation-Vendor" value="Broadvident" />
+				<attribute name="Implementation-Title" value="${project.name}" />
+				<attribute name="Implementation-Version" value="${version}" />
+				<attribute name="Implementation-Time" value="${touch.time}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- 编译war jar 包 -->
+	<target name="build-war" depends="build-jar">
+		<war destfile="${build_path}/${project.name}/${war.name}">
+			<fileset dir="WebRoot">
+				<exclude name="WEB-INF/classes/com/" />
+				<exclude name="WEB-INF/classes/hbase/" />
+				<exclude name="WEB-INF/classes/hdfs/" />
+				<exclude name="WEB-INF/classes/test/" />
+				<exclude name="WEB-INF/classes/resource/" />
+			</fileset>
+
+			<lib file="${build_path}/${project.name}/${jar-jarname-foryarn}" />
+		</war>
+	</target>
+
+</project>
