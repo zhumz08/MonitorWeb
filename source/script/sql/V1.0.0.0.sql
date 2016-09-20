@@ -55,8 +55,6 @@ INSERT INTO `tbl_devstatehistory_all` VALUES ('66', '1', '1', '1474027820', '150
 
 
 
-SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
 -- Table structure for tbl_stateconfig
 -- ----------------------------
