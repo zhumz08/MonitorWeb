@@ -282,7 +282,7 @@ app.controller('CameraStateCtrl', ['$scope','$http','Pager', function($scope,$ht
         AngularPost($http,"/camerastate/query",formStr,function(data){
             $scope.hideLoad();
 
-            window.location = "/MonitorWeb/export/xls/" + data.resultList;
+            window.location = "/export/xls/" + data.resultList;
         },function(data){
             $scope.hideLoad();
 

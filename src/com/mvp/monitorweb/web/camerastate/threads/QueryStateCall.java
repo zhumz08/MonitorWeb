@@ -38,7 +38,7 @@ public class QueryStateCall implements Callable<Integer> {
 	
 	public Integer call() {
 		try {
-			JdbcTemplate template = DBConnFactory.createTemplate();
+			JdbcTemplate template = DBConnFactory.createTemplate(fwqdz);
 			if(template==null){
 				log.error("QueryStateCall fwqdz:" + fwqdz);
 				return 0;
@@ -53,7 +53,7 @@ public class QueryStateCall implements Callable<Integer> {
 			log.info(Thread.currentThread().getName() + "fwqdz:" + fwqdz + "syncArr size:" + syncArr.length);
 			
 		}catch(CannotGetJdbcConnectionException e){
-			log.error("CannotGetJdbcConnectionException error"+e.getMessage());
+			log.error("CannotGetJdbcConnectionException error" + e.getMessage());
 		} catch (Exception e) {
 			log.error("QueryStateCall error",e);
 		}

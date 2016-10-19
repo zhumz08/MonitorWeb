@@ -209,7 +209,7 @@ app.controller('CameraStateHistoryCtrl', ['$scope','$http','Pager', function($sc
         "v_xjmc": "摄像机名称",
         "v_ipdz": "IP地址",
         "v_mac": "MAC地址",
-        "v_online": "在线状态",
+        //"v_online": "在线状态",
         "v_isStore": "是否录像",
         "v_store_state": "录像状态",
         "v_updateTime": "时间",
@@ -279,7 +279,7 @@ app.controller('CameraStateHistoryCtrl', ['$scope','$http','Pager', function($sc
         AngularPost($http,"/camerastate/queryHistory",formStr,function(data){
             $scope.hideLoad();
 
-            window.location = "/MonitorWeb/export/xls/historystate/" + data.resultList;
+            window.location = "/export/xls/historystate/" + data.resultList;
         },function(data){
             $scope.hideLoad();
 

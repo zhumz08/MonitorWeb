@@ -13,11 +13,10 @@ public class DBConnFactory {
 
 	public static JdbcTemplate createTemplate() {
 		try {
-			MvpConfig config = MvpConfig.getInstance();
-			String jdbcClass = config.getProperty("driverClass");
-			String jdbcUrl = config.getProperty("jdbcUrl");
-			String username = config.getProperty("user");
-			String password = config.getProperty("password");
+			String jdbcClass = MvpConfig.getProperty("driverClass");
+			String jdbcUrl = MvpConfig.getProperty("jdbcUrl");
+			String username = MvpConfig.getProperty("user");
+			String password = MvpConfig.getProperty("password");
 			
 			DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			dataSource.setDriverClassName(jdbcClass);
