@@ -33,24 +33,6 @@ CREATE TABLE `tbl_devstatehistory_all` (
   UNIQUE KEY `UBI_LOGIC_ID` (`UBI_LOGIC_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=gbk ROW_FORMAT=COMPACT;
 
-INSERT INTO `tbl_devstatehistory_all` VALUES ('49', '1', '1', '1474027820', '15020000001320800020', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('50', '1', '1', '1474027820', '15020000001320800021', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('51', '1', '1', '1474027820', '15020000001320800022', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('52', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('53', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('54', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('55', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('56', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('57', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('58', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('59', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('60', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('61', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('62', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('63', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('64', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('65', '1', '1', '1474027820', '15020000001320800023', '1', '1');
-INSERT INTO `tbl_devstatehistory_all` VALUES ('66', '1', '1', '1474027820', '15020000001320800023', '1', '1');
 
 
 
@@ -77,88 +59,259 @@ INSERT INTO `tbl_stateconfig` VALUES ('syncTime', '2016-09-19 14:47:21', '从什
 create or replace view view_camerastate_all
 as
 SELECT
-	t.xjbh as 'v_xjbh', /*相机编号*/
-  t.xjmc as 'v_xjmc',  /*摄像机名称*/
-  t.ipdz as 'v_ipdz', /* IP地址 */
- 	t.mac as 'v_mac', /*MAC地址 */
-	(case s.UI_ENABLE when 1 then '在线' else '离线' end) as 'v_online', /*在线状态*/
-  '未知' as 'v_isStore', /*是否录像*/
-	(case s.UI_RECORD_STATE when 1 then '正常' else '断开' end)  'v_store_state', /*录像状态*/
-   s.UBI_UPDATE_TIME 'v_updateTime1', /*时间*/
-   (FROM_UNIXTIME(s.UBI_UPDATE_TIME, '%Y-%m-%d %T' )) as 'v_updateTime',
-  /*'v_xzqh',*/ /*行政区划*/
-	(select w.dy from tbl_xzqhqjbh w where w.dm = t.gb_quj ) as 'v_xzqh',
-   t.glbm as 'v_glbm', /*管理部门*/
-	(select x.`value` from tbl_sxjlx x where x.op = t.xjlx) as 'v_xjlx', /*相机类型*/
-  (case t.sfkk when 1 then '是' else '否' end) as 'v_sfkk',   /*是否可控*/
-   (case t.yt when 1 then '治安' when 2 then '交通' when 3 then '重点部位' end) as 'v_yt', /*用途*/
-   (case t.qybz when 1 then '启用' else '停用' end) as 'v_qybz', /*启用标志*/
-   (case t.zgd when 1 then '是' else '否' end) as 'v_zgd', /*制高点*/
-	 t.sccs as 'v_xjcs', /*相机厂商*/
-    (select w.dwmc from tbl_dwxx w where w.id = t.dwxxid ) as 'v_dwmc',  /*点位名称*/
-    (select l.mc from tbl_lkxx l where l.id = t.lkxxid ) as 'v_lkmc',  /*路口名称*/
-   (case t.jttw when 0 then '不支持' when 1 then '不支持' end) as 'v_twkg',  /*透雾开关*/
-   t.gisjd  as 'v_gd', /*经度*/
-   t.giswd as 'v_wd', /*纬度*/
-   t.azrq as 'v_azrq', /*安装日期*/
-   t.bzqz as 'v_bzqz', /*保质期至*/
-   t.jsdw as 'v_jsdw', /*承建单位*/
-   t.yt_htbh as 'v_yt_htbh', /*合同编号*/
-   t.jt_htbh as 'v_jt_htbh', 
-   t.gcbh as 'v_gcbh',  /*工程信息编号*/
-   t.zrr_bm as 'v_zrbm', /*设备责任部门*/
-   t.zrr_lxdh as 'v_zrr_lxdh', /* 设备责任部门责任人联系电话 */
-   t.jydw as 'v_jydw',  /*检验单位*/
-   t.lrr as 'v_lrr'  /*录入人*/
+	`t`.`xjbh` AS `v_xjbh`,
+	`t`.`xjmc` AS `v_xjmc`,
+	`t`.`ipdz` AS `v_ipdz`,
+	`t`.`mac` AS `v_mac`,
+	(
+		CASE `s`.`UI_ENABLE`
+		WHEN 1 THEN
+			'在线'
+		ELSE
+			'离线'
+		END
+	) AS `v_online`,
+	'未知' AS `v_isStore`,
+	(
+		CASE `s`.`UI_RECORD_STATE`
+		WHEN 1 THEN
+			'正常'
+		ELSE
+			'断开'
+		END
+	) AS `v_store_state`,
+	`s`.`UBI_UPDATE_TIME` AS `v_updateTime1`,
+	date_format(
+		from_unixtime(`s`.`UBI_UPDATE_TIME`),
+		'%Y-%m-%d %T'
+	) AS `v_updateTime`,
+	(
+		SELECT
+			`w`.`dy`
+		FROM
+			`tbl_xzqhqjbh` `w`
+		WHERE
+			(`w`.`dm` = `t`.`gb_quj`)
+	) AS `v_xzqh`,
+	`t`.`glbm` AS `v_glbm`,
+	(
+		SELECT
+			`x`.`dmsm`
+		FROM
+			`tbl_sxjlx` `x`
+		WHERE
+			(`x`.`sxbh` = `t`.`xjlx`)
+	) AS `v_xjlx`,
+	(
+		CASE `t`.`sfkk`
+		WHEN 1 THEN
+			'是'
+		ELSE
+			'否'
+		END
+	) AS `v_sfkk`,
+	(
+		CASE `t`.`yt`
+		WHEN 1 THEN
+			'治安'
+		WHEN 2 THEN
+			'交通'
+		WHEN 3 THEN
+			'重点部位'
+		END
+	) AS `v_yt`,
+	(
+		CASE `t`.`qybz`
+		WHEN 1 THEN
+			'启用'
+		ELSE
+			'停用'
+		END
+	) AS `v_qybz`,
+	(
+		CASE `t`.`zgd`
+		WHEN 1 THEN
+			'是'
+		ELSE
+			'否'
+		END
+	) AS `v_zgd`,
+	`t`.`sccs` AS `v_xjcs`,
+	(
+		SELECT
+			`w`.`dwmc`
+		FROM
+			`tbl_dwxx` `w`
+		WHERE
+			(`w`.`id` = `t`.`dwxxid`)
+	) AS `v_dwmc`,
+	(
+		SELECT
+			`l`.`mc`
+		FROM
+			`tbl_lkxx` `l`
+		WHERE
+			(`l`.`id` = `t`.`lkxxid`)
+	) AS `v_lkmc`,
+	(
+		CASE `t`.`jttw`
+		WHEN 0 THEN
+			'不支持'
+		WHEN 1 THEN
+			'不支持'
+		END
+	) AS `v_twkg`,
+	`t`.`gisjd` AS `v_gd`,
+	`t`.`giswd` AS `v_wd`,
+	`t`.`azrq` AS `v_azrq`,
+	`t`.`bzqz` AS `v_bzqz`,
+	`t`.`jsdw` AS `v_jsdw`,
+	`t`.`yt_htbh` AS `v_yt_htbh`,
+	`t`.`jt_htbh` AS `v_jt_htbh`,
+	`t`.`gcbh` AS `v_gcbh`,
+	`t`.`zrr_bm` AS `v_zrbm`,
+	`t`.`zrr_lxdh` AS `v_zrr_lxdh`,
+	`t`.`jydw` AS `v_jydw`,
+	`t`.`lrr` AS `v_lrr`
 FROM
-	tbl_sxj t,
-	tbl_camerastateall s
+	(
+		`tbl_sxj` `t`
+		JOIN `tbl_camerastateall` `s`
+	)
 WHERE
-	t.xjbh = s.SZ_GISCODE;
-
+	(
+		(
+			`t`.`xjbh` = `s`.`SZ_GISCODE`
+		)
+		AND (`t`.`xjbh` <> 'N/A')
+	);
 
 
 create or replace view view_devstatehistory_all
 as
-SELECT t.xjbh as 'v_xjbh', /*相机编号*/
-  t.xjmc as 'v_xjmc',  /*摄像机名称*/
-  t.ipdz as 'v_ipdz', /* IP地址 */
- 	t.mac as 'v_mac', /*MAC地址 */
-  (case s.UI_EVENT_TYPE when 1 then '相机离线' when 2 then '离线恢复' when 3  then '存储码流断开30秒+' else '存储码流恢复' end) as 'v_event_type', /*在线状态*/
-  '未知' as 'v_isStore', /*是否录像*/
-   s.UBI_TIME 'v_updateTime1', /*时间*/
-   (FROM_UNIXTIME(s.UBI_TIME, '%Y-%m-%d %T' )) as 'v_updateTime',
-  /*'v_xzqh',*/ /*行政区划*/
-	(select w.dy from tbl_xzqhqjbh w where w.dm = t.gb_quj ) as 'v_xzqh',
-   t.glbm as 'v_glbm', /*管理部门*/
-	(select x.`value` from tbl_sxjlx x where x.op = t.xjlx) as 'v_xjlx', /*相机类型*/
-  (case t.sfkk when 1 then '是' else '否' end) as 'v_sfkk',   /*是否可控*/
-   (case t.yt when 1 then '治安' when 2 then '交通' when 3 then '重点部位' end) as 'v_yt', /*用途*/
-   (case t.qybz when 1 then '启用' else '停用' end) as 'v_qybz', /*启用标志*/
-   (case t.zgd when 1 then '是' else '否' end) as 'v_zgd', /*制高点*/
-	 t.sccs as 'v_xjcs', /*相机厂商*/
-    (select w.dwmc from tbl_dwxx w where w.id = t.dwxxid ) as 'v_dwmc',  /*点位名称*/
-    (select l.mc from tbl_lkxx l where l.id = t.lkxxid ) as 'v_lkmc',  /*路口名称*/
-   (case t.jttw when 0 then '不支持' when 1 then '不支持' end) as 'v_twkg',  /*透雾开关*/
-   t.gisjd  as 'v_gd', /*经度*/
-   t.giswd as 'v_wd', /*纬度*/
-   t.azrq as 'v_azrq', /*安装日期*/
-   t.bzqz as 'v_bzqz', /*保质期至*/
-   t.jsdw as 'v_jsdw', /*承建单位*/
-   t.yt_htbh as 'v_yt_htbh', /*合同编号*/
-   t.jt_htbh as 'v_jt_htbh', 
-   t.gcbh as 'v_gcbh',  /*工程信息编号*/
-   t.zrr_bm as 'v_zrbm', /*设备责任部门*/
-   t.zrr_lxdh as 'v_zrr_lxdh', /* 设备责任部门责任人联系电话 */
-   t.jydw as 'v_jydw',  /*检验单位*/
-   t.lrr as 'v_lrr'  /*录入人*/
+SELECT
+	`t`.`xjbh` AS `v_xjbh`,
+	`t`.`xjmc` AS `v_xjmc`,
+	`t`.`ipdz` AS `v_ipdz`,
+	`t`.`mac` AS `v_mac`,
+	(
+		CASE `s`.`UI_EVENT_TYPE`
+		WHEN 1 THEN
+			'相机离线'
+		WHEN 2 THEN
+			'离线恢复'
+		WHEN 3 THEN
+			'存储码流断开30秒+'
+		ELSE
+			'存储码流恢复'
+		END
+	) AS `v_event_type`,
+	'未知' AS `v_isStore`,
+	`s`.`UBI_TIME` AS `v_updateTime1`,
+	date_format(
+		from_unixtime(`s`.`UBI_TIME`),
+		'%Y-%m-%d %T'
+	) AS `v_updateTime`,
+	(
+		SELECT
+			`w`.`dy`
+		FROM
+			`tbl_xzqhqjbh` `w`
+		WHERE
+			(`w`.`dm` = `t`.`gb_quj`)
+	) AS `v_xzqh`,
+	`t`.`glbm` AS `v_glbm`,
+	(
+		SELECT
+			`x`.`dmsm`
+		FROM
+			`tbl_sxjlx` `x`
+		WHERE
+			(`x`.`sxbh` = `t`.`xjlx`)
+	) AS `v_xjlx`,
+	(
+		CASE `t`.`sfkk`
+		WHEN 1 THEN
+			'是'
+		ELSE
+			'否'
+		END
+	) AS `v_sfkk`,
+	(
+		CASE `t`.`yt`
+		WHEN 1 THEN
+			'治安'
+		WHEN 2 THEN
+			'交通'
+		WHEN 3 THEN
+			'重点部位'
+		END
+	) AS `v_yt`,
+	(
+		CASE `t`.`qybz`
+		WHEN 1 THEN
+			'启用'
+		ELSE
+			'停用'
+		END
+	) AS `v_qybz`,
+	(
+		CASE `t`.`zgd`
+		WHEN 1 THEN
+			'是'
+		ELSE
+			'否'
+		END
+	) AS `v_zgd`,
+	`t`.`sccs` AS `v_xjcs`,
+	(
+		SELECT
+			`w`.`dwmc`
+		FROM
+			`tbl_dwxx` `w`
+		WHERE
+			(`w`.`id` = `t`.`dwxxid`)
+	) AS `v_dwmc`,
+	(
+		SELECT
+			`l`.`mc`
+		FROM
+			`tbl_lkxx` `l`
+		WHERE
+			(`l`.`id` = `t`.`lkxxid`)
+	) AS `v_lkmc`,
+	(
+		CASE `t`.`jttw`
+		WHEN 0 THEN
+			'不支持'
+		WHEN 1 THEN
+			'不支持'
+		END
+	) AS `v_twkg`,
+	`t`.`gisjd` AS `v_gd`,
+	`t`.`giswd` AS `v_wd`,
+	`t`.`azrq` AS `v_azrq`,
+	`t`.`bzqz` AS `v_bzqz`,
+	`t`.`jsdw` AS `v_jsdw`,
+	`t`.`yt_htbh` AS `v_yt_htbh`,
+	`t`.`jt_htbh` AS `v_jt_htbh`,
+	`t`.`gcbh` AS `v_gcbh`,
+	`t`.`zrr_bm` AS `v_zrbm`,
+	`t`.`zrr_lxdh` AS `v_zrr_lxdh`,
+	`t`.`jydw` AS `v_jydw`,
+	`t`.`lrr` AS `v_lrr`
 FROM
-	tbl_sxj t,
-	tbl_devstatehistory_all s
+	(
+		`tbl_sxj` `t`
+		JOIN `tbl_devstatehistory_all` `s`
+	)
 WHERE
-	t.xjbh = s.SZ_GISCODE;
-
-
+	(
+		(
+			`t`.`xjbh` = `s`.`SZ_GISCODE`
+		)
+		AND (`t`.`xjbh` <> 'N/A')
+	);
 
 create or replace view view_mvpserver as
 select DISTINCT t.fwqdz from tbl_sxj t ;

@@ -7,7 +7,7 @@
 	
 	<servlet>
 		<servlet-name>Spring-Mvc3</servlet-name>
-		<servlet-class>com.mding.monitorweb.web.WebDispatchServlet</servlet-class>
+		<servlet-class>com.mvp.monitorweb.web.WebDispatchServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring-*.xml</param-value>
